@@ -14,3 +14,7 @@ INSERT INTO question(`exam_id`, `number`, `is_choice`, `desc`, `std_answer`, `ma
 ('2', '1', '1', 'cet6 choice test 1:\nA: \nB: \nC: ', 'A', '10'),
 ('2', '2', '1', 'cet6 choice test 2:\nA: \nB: \nC: ', 'A', '10'),
 ('2', '3', '0', 'cet6 essay test 1:\nYour friend Li Hua ...', 'Example essay: ...', '80');
+
+INSERT INTO sign_up(user_id, exam_id, finish) VALUES
+('1', '1', '0'),
+('1', '2', '0');

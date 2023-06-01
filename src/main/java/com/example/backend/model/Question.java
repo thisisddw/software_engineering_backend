@@ -2,24 +2,24 @@ package com.example.backend.model;
 
 public class Question {
     private Long id;
-    private Long exam_id;
+    private Long examId;
     private Long number;
-    private Boolean is_choice;
+    private Boolean isChoice;
     private String desc;
-    private String std_answer;
-    private Long max_score;
+    private String stdAnswer;
+    private Long maxScore;
 
     public Question() {
     }
 
-    public Question(Long id, Long exam_id, Long number, Boolean is_choice, String desc, String std_answer, Long max_score) {
+    public Question(Long id, Long examId, Long number, Boolean isChoice, String desc, String stdAnswer, Long maxScore) {
         this.id = id;
-        this.exam_id = exam_id;
+        this.examId = examId;
         this.number = number;
-        this.is_choice = is_choice;
+        this.isChoice = isChoice;
         this.desc = desc;
-        this.std_answer = std_answer;
-        this.max_score = max_score;
+        this.stdAnswer = stdAnswer;
+        this.maxScore = maxScore;
     }
 
     public Long getId() {
@@ -30,12 +30,12 @@ public class Question {
         this.id = id;
     }
 
-    public Long getExam_id() {
-        return exam_id;
+    public Long getExamId() {
+        return examId;
     }
 
-    public void setExam_id(Long exam_id) {
-        this.exam_id = exam_id;
+    public void setExamId(Long examId) {
+        this.examId = examId;
     }
 
     public Long getNumber() {
@@ -46,12 +46,12 @@ public class Question {
         this.number = number;
     }
 
-    public Boolean getIs_choice() {
-        return is_choice;
+    public Boolean getIsChoice() {
+        return isChoice;
     }
 
-    public void setIs_choice(Boolean is_choice) {
-        this.is_choice = is_choice;
+    public void setIsChoice(Boolean isChoice) {
+        this.isChoice = isChoice;
     }
 
     public String getDesc() {
@@ -62,19 +62,19 @@ public class Question {
         this.desc = desc;
     }
 
-    public String getStd_answer() {
-        return std_answer;
+    public String getStdAnswer() {
+        return stdAnswer;
     }
 
-    public void setStd_answer(String std_answer) {
-        this.std_answer = std_answer;
+    public void setStdAnswer(String stdAnswer) {
+        this.stdAnswer = stdAnswer;
     }
 
-    public Long getMax_score() {
-        return max_score;
+    public Long getMaxScore() {
+        return maxScore;
     }
 
-    public void setMax_score(Long max_score) {
-        this.max_score = max_score;
+    public void setMaxScore(Long maxScore) {
+        this.maxScore = maxScore;
     }
 }

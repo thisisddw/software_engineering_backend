@@ -1,9 +1,13 @@
 package com.example.backend.service;
 
+import com.example.backend.dao.SignUpInfoDao;
 import com.example.backend.dao.UserDao;
+import com.example.backend.model.SignUpInfo;
 import com.example.backend.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -20,7 +24,6 @@ public class UserService {
     public int register(User user) {
         if(userDao.getUserByName(user.getName()) != null)
             return -1;
-        userDao.addUser(user);
-        return 0;
+        return userDao.addUser(user);
     }
 }
