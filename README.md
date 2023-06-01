@@ -49,3 +49,8 @@ mysql运行在3306端口，用户名root，密码123456，数据库名mydb
 - return：
     - 成功：1
     - 失败：0
+
+## 根据user_id和exam_id获取答题情况
+- /api/take_exam?uid=&eid=
+- get
+- return: List\<Answer\>

@@ -6,11 +6,10 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `answer`;
 CREATE TABLE `answer` (
   `user_id` int NOT NULL,
-  `exam_id` int NOT NULL,
   `question_id` int NOT NULL,
   `answer` varchar(1023) NOT NULL,
   `score` int DEFAULT NULL,
-  PRIMARY KEY (`user_id`,`exam_id`,`question_id`)
+  PRIMARY KEY (`user_id`,`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------

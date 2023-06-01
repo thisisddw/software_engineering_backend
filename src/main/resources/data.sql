@@ -18,3 +18,10 @@ INSERT INTO question(`exam_id`, `number`, `is_choice`, `desc`, `std_answer`, `ma
 INSERT INTO sign_up(user_id, exam_id, finish) VALUES
 ('1', '1', '0'),
 ('1', '2', '0');
+
+INSERT INTO answer(user_id, question_id, answer, score) VALUES
+('1', '1', 'A', NULL),
+('1', '2', 'Dear Li Hua, ...', NULL),
+('1', '3', 'A', '10'),
+('1', '4', 'B', '0'),
+('1', '5', '... Yours sincerely ddw', '20');
