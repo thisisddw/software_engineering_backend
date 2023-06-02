@@ -21,6 +21,10 @@ public class ExamService {
     }
 
     public List<Question> getExamContentById(Long exam_id) {
-        return questionDao.getQuestionsByExam(exam_id);
+        List<Question> questions = questionDao.getQuestionsByExam(exam_id);
+        questions.sort((q1, q2) -> {
+            return (int) (q1.getNumber() - q2.getNumber());
+        });
+        return questions;
     }
 }

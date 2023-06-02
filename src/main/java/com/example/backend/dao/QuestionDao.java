@@ -17,4 +17,10 @@ public class QuestionDao {
         return jdbcTemplate.query("select * from question where exam_id = ?",
                 new BeanPropertyRowMapper<Question>(Question.class), exam_id);
     }
+    public Question getQuestionById(Long id) {
+        List<Question> query = jdbcTemplate.query("select * from question where id = ?",
+                new BeanPropertyRowMapper<Question>(Question.class), id);
+        assert query.size() <= 1;
+        return query.isEmpty() ? null : query.get(0);
+    }
 }

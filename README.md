@@ -54,3 +54,30 @@ mysql运行在3306端口，用户名root，密码123456，数据库名mydb
 - /api/take_exam?uid=&eid=
 - get
 - return: List\<Answer\>
+
+## 提交答卷
+- /api/take_exam
+- post
+- 请求体格式：List\<Answer\>
+    - Answer属性：
+        - userId: Long
+        - questionId: Long
+        - answer: String
+        - score (optional): Long
+- 选择题会自动打分
+- return: 
+    - 成功： "success"
+    - 失败： "failure"
+
+## 修改题目得分
+- /api/grade
+- put
+- 请求体格式：{"userId":Long,"questionId":Long,"score":Long}
+- return: 
+    - 成功： "success"
+    - 失败： "failure"
+
+## 根据user_id和exam_id获取考试分数
+- /api/grade?uid=&eid=
+- get
+- return: [选择题分数, 解答题分数, 选择题总分, 解答题总分]

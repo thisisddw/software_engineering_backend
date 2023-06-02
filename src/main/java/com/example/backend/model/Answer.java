@@ -16,6 +16,10 @@ public class Answer {
         this.score = score;
     }
 
+    public boolean check() {
+        return userId != null && questionId != null && answer != null;
+    }
+
     public Long getUserId() {
         return userId;
     }
