@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class SignUpService {
@@ -15,6 +16,10 @@ public class SignUpService {
 
     public List<SignUpInfo> getSignUpInfoByUserId(Long userId) {
         return signUpInfoDao.getSignUpInfoByUserId(userId);
+    }
+
+    public List<Object[]> getSignUpInfoWithExamByUserId(Long userId) {
+        return signUpInfoDao.getSignUpInfoWithExamByUserId(userId);
     }
 
     public int signUp(Long userId, Long examId) {

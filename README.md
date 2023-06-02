@@ -42,6 +42,18 @@ mysql运行在3306端口，用户名root，密码123456，数据库名mydb
 - get
 - return: List\<SignUpInfo\>
 
+## 用user_id获取报名信息和考试信息
+- /api/sign_up/exam?id=
+- get
+- return: List\<
+    {
+        "examName": ,
+        "examDesc": ,
+        "finish": ,
+        "examId": ,
+        "userId": 
+    }\>
+
 ## 把考试状态置为结束
 - /api/sign_up
 - put
