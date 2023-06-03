@@ -46,6 +46,11 @@ public class SignUpInfoDao {
                 new SignUpExamRowMapper(), id);
     }
 
+    public List<SignUpInfo> getSignUpInfoByExamId(Long id) {
+        return jdbcTemplate.query("select * from sign_up where exam_id = ?",
+                new BeanPropertyRowMapper<>(SignUpInfo.class), id);
+    }
+
     public int addSignUpInfo(Long userId, Long examId) {
         return jdbcTemplate.update("insert into sign_up(user_id, exam_id, finish) values(?, ?, ?)",
                 userId, examId, 0);

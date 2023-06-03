@@ -62,6 +62,17 @@ mysql运行在3306端口，用户名root，密码123456，数据库名mydb
     - 成功：1
     - 失败：0
 
+## 根据exam_id获取已经结束的考试
+- /api/sign_up/finished?id=
+- get
+- return: List\<
+    {
+        "userId": ,
+        "examId": ,
+        "finish": "1",
+        "userName": 
+    }\>
+
 ## 根据user_id和exam_id获取答题情况
 - /api/take_exam?uid=&eid=
 - get
