@@ -105,3 +105,8 @@ mysql运行在3306端口，用户名root，密码123456，数据库名mydb
 - get
 - return: [ 选择题分数, 解答题分数, 选择题总分, 解答题总分 ]
     - 如果有没打分的题目，受影响的返回值是null
+## 根据exam_id获取考试详情
+- /api/pay?examId=
+- get
+- return: Exam
+    - 如果考试不存在return null
