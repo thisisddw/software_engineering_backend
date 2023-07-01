@@ -28,6 +28,5 @@ public class QuestionDao {
     public int addQuestion(Question question) {
         return jdbcTemplate.update("insert into question (id, exam_id, number, is_choice, desc,std_answer, max_score) values (?, ?, ?, ?, ?, ?, ?)",
                 question.getId(), question.getExamId(), question.getNumber(), question.getIsChoice(), question.getDesc(),question.getStdAnswer(), question.getMaxScore());
-
     }
 }

@@ -16,9 +16,9 @@ public class GradeController {
     private GradeService gradeService;
 
     @PutMapping
-    public  ResponseEntity<?> setScore(HttpServletRequest req, @RequestBody Map<String, Long> params) {
+    public  ResponseEntity<String> setScore(HttpServletRequest req, @RequestBody Map<String, Long> params) {
         if (req.getSession().getAttribute("name") == null) {
-            return new ResponseEntity<String>("Not logged in", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<String>("failure", HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<String>(gradeService.setScore(params.get("userId"), params.get("questionId"), params.get("score")), HttpStatus.OK);
     }
@@ -30,10 +30,10 @@ public class GradeController {
      * [3]: max grade of other questions
      */
     @GetMapping
-    public ResponseEntity<?>  getScore(HttpServletRequest req, @RequestParam("uid") Long userId,
+    public ResponseEntity<Object[]>  getScore(HttpServletRequest req, @RequestParam("uid") Long userId,
                              @RequestParam("eid") Long examId) {
         if (req.getSession().getAttribute("name") == null) {
-            return new ResponseEntity<>("Not logged in",HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(null,HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>(gradeService.getGrade(userId, examId), HttpStatus.OK);
     }

@@ -12,8 +12,9 @@ public class QuestionController {
     private QuestionDao questionDao;
 
     @PutMapping("/add")
-    public  void addQuestion(@RequestParam Question question) {
-        questionDao.addQuestion(question);
+    public  String addQuestion(@RequestParam Question question) {
+        if(questionDao.addQuestion(question)==1) return "success";
+        else return "failure";
     }
 
 }
