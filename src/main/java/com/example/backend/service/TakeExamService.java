@@ -27,8 +27,7 @@ public class TakeExamService {
                 Question question = questionDao.getQuestionById(ans.getQuestionId());
                 if (question == null) return false;
                 if (question.getIsChoice()) {
-                    ans.setScore(ans.getAnswer().equals(question.getStdAnswer())
-                            ? question.getMaxScore() : 0L);
+                    ans.setScore(ans.getAnswer().equals(question.getStdAnswer()) ? question.getMaxScore() : 0L);
                 }
             }
             answerDao.setAnswer(ans);

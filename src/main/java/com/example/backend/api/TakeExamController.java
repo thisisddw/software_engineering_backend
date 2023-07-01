@@ -2,7 +2,10 @@ package com.example.backend.api;
 
 import com.example.backend.model.Answer;
 import com.example.backend.service.TakeExamService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,13 +17,20 @@ public class TakeExamController {
     private TakeExamService takeExamService;
 
     @GetMapping
-    public List<Answer> getAnswerSheet(@RequestParam("uid") Long userId,
+    public ResponseEntity<List<Answer>> getAnswerSheet(HttpServletRequest req, @RequestParam("uid") Long userId,
                                        @RequestParam("eid") Long examId) {
-        return takeExamService.getAnswerSheet(userId, examId);
+        if (req.getSession().getAttribute("id") != userId) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(takeExamService.getAnswerSheet(userId, examId), HttpStatus.OK);
     }
     @PostMapping
-    public String submit(@RequestBody List<Answer> answerList) {
+    public ResponseEntity<String> submit(HttpServletRequest req,@RequestBody List<Answer> answerList) {
+        for(Answer answer: answerList) {
+            if(answer.getUserId()!=req.getSession().getAttribute("id")) return new ResponseEntity<>("failure", HttpStatus.FORBIDDEN);
+        }
         boolean b = takeExamService.submit(answerList, true);
-        return b ? "success" : "failure";
+        String str=b ? "success" : "failure";
+        return new ResponseEntity<>(str, HttpStatus.OK);
     }
 }

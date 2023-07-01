@@ -5,6 +5,7 @@ import com.example.backend.model.Exam;
 import com.example.backend.model.SignUpInfo;
 import com.example.backend.model.User;
 import com.example.backend.service.SignUpService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,10 @@ public class SignUpController {
     private SignUpService signUpService;
 
     @PostMapping
-    public int signUp(@RequestBody SignUpInfo signUpInfo) {
+    public int signUp(HttpServletRequest req, @RequestBody SignUpInfo signUpInfo) {
+        if(req.getSession().getAttribute("userId") != signUpInfo.getUserId()) {
+            return 0;
+        }
         return signUpService.signUp(signUpInfo.getUserId(), signUpInfo.getExamId());
     }
     @GetMapping
