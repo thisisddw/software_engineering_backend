@@ -110,3 +110,8 @@ mysql运行在3306端口，用户名root，密码123456，数据库名mydb
 - get
 - return: Exam
     - 如果考试不存在return null
+## 添加题目
+- /api/question
+- put
+- 请求体格式：Question
+- 无返回值
