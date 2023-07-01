@@ -1,7 +1,10 @@
 package com.example.backend.api;
 
 import com.example.backend.service.GradeService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -13,8 +16,11 @@ public class GradeController {
     private GradeService gradeService;
 
     @PutMapping
-    public String setScore(@RequestBody Map<String, Long> params) {
-        return gradeService.setScore(params.get("userId"), params.get("questionId"), params.get("score"));
+    public  ResponseEntity<?> setScore(HttpServletRequest req, @RequestBody Map<String, Long> params) {
+        if (req.getSession().getAttribute("name") == null) {
+            return new ResponseEntity<String>("Not logged in", HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<String>(gradeService.setScore(params.get("userId"), params.get("questionId"), params.get("score")), HttpStatus.OK);
     }
 
     /**
@@ -24,8 +30,11 @@ public class GradeController {
      * [3]: max grade of other questions
      */
     @GetMapping
-    public Object[] getScore(@RequestParam("uid") Long userId,
+    public ResponseEntity<?>  getScore(HttpServletRequest req, @RequestParam("uid") Long userId,
                              @RequestParam("eid") Long examId) {
-        return gradeService.getGrade(userId, examId);
+        if (req.getSession().getAttribute("name") == null) {
+            return new ResponseEntity<>("Not logged in",HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(gradeService.getGrade(userId, examId), HttpStatus.OK);
     }
 }
