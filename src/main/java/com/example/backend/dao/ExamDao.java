@@ -30,4 +30,9 @@ public class ExamDao {
     public List<Exam> getAllExams() {
         return jdbcTemplate.query("select * from exam", new ExamMapper());
     }
+    public Exam getExamById(Long id) {
+        List<Exam> query = jdbcTemplate.query("select * from exam where id = ?",
+                new ExamMapper(), id);
+        return query.isEmpty() ? null : query.get(0);
+    }
 }

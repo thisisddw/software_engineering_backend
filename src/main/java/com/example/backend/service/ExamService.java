@@ -27,4 +27,10 @@ public class ExamService {
         });
         return questions;
     }
+    public Exam getExamById(Long id) {
+        return examDao.getExamById(id);
+    }
+//    public Exam getExamByIdAndUId(Long id, Long uId) {
+//        return examDao.getExamById(name);
+//    }
 }
