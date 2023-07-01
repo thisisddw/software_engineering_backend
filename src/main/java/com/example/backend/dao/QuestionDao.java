@@ -23,4 +23,8 @@ public class QuestionDao {
         assert query.size() <= 1;
         return query.isEmpty() ? null : query.get(0);
     }
+    public int addQuestion(Question question) {
+        return jdbcTemplate.update("insert into question (id,exam_id, number, is_choice, std_answer, max_score) values (?, ?, ?, ?, ?)",
+                question.getId(),question.getExamId(), question.getNumber(), question.getIsChoice(), question.getStdAnswer(), question.getMaxScore());
+    }
 }

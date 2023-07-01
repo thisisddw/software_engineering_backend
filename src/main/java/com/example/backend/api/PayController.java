@@ -15,8 +15,6 @@ public class PayController {
     private ExamService examService;
     @GetMapping
     public Exam getExam(@RequestParam("examId") Long examId) {
-        //User=examService.getUserById(id);
-        //SignUpInfo signUpInfo = signUpService.getSignUpInfo
         return examService.getExamById(examId);
     }
 }
