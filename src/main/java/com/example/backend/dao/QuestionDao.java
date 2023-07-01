@@ -17,14 +17,16 @@ public class QuestionDao {
         return jdbcTemplate.query("select * from question where exam_id = ?",
                 new BeanPropertyRowMapper<Question>(Question.class), exam_id);
     }
+
     public Question getQuestionById(Long id) {
         List<Question> query = jdbcTemplate.query("select * from question where id = ?",
                 new BeanPropertyRowMapper<Question>(Question.class), id);
         assert query.size() <= 1;
         return query.isEmpty() ? null : query.get(0);
     }
+
     public int addQuestion(Question question) {
-        return jdbcTemplate.update("insert into question (id,exam_id, number, is_choice, std_answer, max_score) values (?, ?, ?, ?, ?)",
-                question.getId(),question.getExamId(), question.getNumber(), question.getIsChoice(), question.getStdAnswer(), question.getMaxScore());
+        return jdbcTemplate.update("insert into question (id, exam_id, number, is_choice, desc,std_answer, max_score) values (?, ?, ?, ?, ?, ?, ?)",
+                question.getId(), question.getExamId(), question.getNumber(), question.getIsChoice(), question.getDesc(),question.getStdAnswer(), question.getMaxScore());
     }
 }
