@@ -18,7 +18,6 @@ public class GradeController {
     @PutMapping
     public  ResponseEntity<String> setScore(HttpServletRequest req, @RequestBody Map<String, Long> params) {
         if (!req.getSession().getAttribute("type") .equals( "teacher")) {
-            S
             return new ResponseEntity<String>("failure", HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<String>(gradeService.setScore(params.get("userId"), params.get("questionId"), params.get("score")), HttpStatus.OK);
