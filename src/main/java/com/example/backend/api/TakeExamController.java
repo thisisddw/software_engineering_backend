@@ -19,7 +19,7 @@ public class TakeExamController {
     @GetMapping
     public ResponseEntity<List<Answer>> getAnswerSheet(HttpServletRequest req, @RequestParam("uid") Long userId,
                                        @RequestParam("eid") Long examId) {
-        if (!req.getSession().getAttribute("id") .equals(userId)) {
+        if (!req.getSession().getAttribute("type").equals( "teacher")) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>(takeExamService.getAnswerSheet(userId, examId), HttpStatus.OK);
