@@ -2,6 +2,7 @@ package com.example.backend.dao;
 
 import com.example.backend.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -26,7 +27,14 @@ public class QuestionDao {
     }
 
     public int addQuestion(Question question) {
-        return jdbcTemplate.update("insert into question (id, exam_id, number, is_choice, desc,std_answer, max_score) values (?, ?, ?, ?, ?, ?, ?)",
-                question.getId(), question.getExamId(), question.getNumber(), question.getIsChoice(), question.getDesc(),question.getStdAnswer(), question.getMaxScore());
+        int x;
+
+        try {
+            x = jdbcTemplate.update("insert into question values (?, ?, ?, ?, ?, ?, ?)",
+                    question.getId(), question.getExamId(), question.getNumber(), question.getIsChoice(), question.getDesc(), question.getStdAnswer(), question.getMaxScore());
+        } catch (DataAccessException e) {
+            x = 0;
+        }
+        return x;
     }
 }
