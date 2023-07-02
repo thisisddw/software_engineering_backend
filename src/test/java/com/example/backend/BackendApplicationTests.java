@@ -1,8 +1,10 @@
 package com.example.backend;
 
 import com.example.backend.api.QuestionController;
+import com.example.backend.api.UserController;
 import com.example.backend.dao.QuestionDao;
 import com.example.backend.model.Question;
+import com.example.backend.model.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.junit.jupiter.api.Test;
@@ -31,9 +33,14 @@ class BackendApplicationTests {
 	private HttpServletRequest request;
 	@Autowired
 	private QuestionDao questionDao;
-
+	@Autowired
+	private UserController userController;
 	@Test
-	public void SystemTest() {
+	public void SystemTest_teacher() {
+		MockHttpSession session = new MockHttpSession();
+		session.setAttribute("type", "teacher");
+		when(request.getSession()).thenReturn(session);
+		User user = userController.tryLogin(request, "admin","123");
 
 	}
 @Test

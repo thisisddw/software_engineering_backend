@@ -22,7 +22,7 @@ public class UserController{
     //@Autowired
    // private SessionList sessionList;
     @GetMapping("/login")
-    public  User tryLogin(HttpServletResponse response,
+    public  User tryLogin(
                          HttpServletRequest request,
                          @RequestParam("name") String name,
                          @RequestParam("pwd") String pwd) {
