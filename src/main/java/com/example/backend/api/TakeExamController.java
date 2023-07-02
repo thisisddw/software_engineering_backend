@@ -19,7 +19,7 @@ public class TakeExamController {
     @GetMapping
     public ResponseEntity<List<Answer>> getAnswerSheet(HttpServletRequest req, @RequestParam("uid") Long userId,
                                        @RequestParam("eid") Long examId) {
-        if (req.getSession().getAttribute("id") != userId) {
+        if (!req.getSession().getAttribute("id") .equals(userId)) {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>(takeExamService.getAnswerSheet(userId, examId), HttpStatus.OK);
@@ -27,7 +27,7 @@ public class TakeExamController {
     @PostMapping
     public ResponseEntity<String> submit(HttpServletRequest req,@RequestBody List<Answer> answerList) {
         for(Answer answer: answerList) {
-            if(answer.getUserId()!=req.getSession().getAttribute("id")) return new ResponseEntity<>("failure", HttpStatus.FORBIDDEN);
+            if(!answer.getUserId().equals(req.getSession().getAttribute("id"))) return new ResponseEntity<>("failure", HttpStatus.FORBIDDEN);
         }
         boolean b = takeExamService.submit(answerList, true);
         String str=b ? "success" : "failure";
