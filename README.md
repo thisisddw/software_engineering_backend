@@ -114,4 +114,4 @@ mysql运行在3306端口，用户名root，密码123456，数据库名mydb
 - /api/question
 - put
 - 请求体格式：Question
-- 无返回值
+- 返回"success"或"failure"
