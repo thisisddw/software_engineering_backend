@@ -123,3 +123,15 @@ mysql运行在3306端口，用户名root，密码123456，数据库名mydb
         - String stdAnswer
         - Long maxScore
 - 返回"success"或"failure"
+## 获取一场考试下所有的大题信息
+- /api/take_exam/big_question?eid=
+- get
+- return: List\<
+    {
+        "id":      ,
+        "user_id": ,
+        "answer":  ,
+        "desc":    ,
+        "max_socre": 
+    }\>
+
