@@ -37,7 +37,7 @@ CREATE TABLE `exam` (
 -- ----------------------------
 DROP TABLE IF EXISTS `question`;
 CREATE TABLE `question` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int AUTO_INCREMENT,
   `exam_id` int NOT NULL,
   `number` int NOT NULL,
   `is_choice` int NOT NULL,
