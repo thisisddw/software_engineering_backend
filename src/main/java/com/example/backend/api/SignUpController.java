@@ -21,7 +21,7 @@ public class SignUpController {
 
     @PostMapping
     public int signUp(HttpServletRequest req, @RequestBody SignUpInfo signUpInfo) {
-        if(req.getSession().getAttribute("userId") != signUpInfo.getUserId()) {
+        if(req.getSession().getAttribute("id") != signUpInfo.getUserId()) {
             return 0;
         }
         return signUpService.signUp(signUpInfo.getUserId(), signUpInfo.getExamId());
