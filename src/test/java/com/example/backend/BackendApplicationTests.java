@@ -49,37 +49,7 @@ class BackendApplicationTests {
 		}
 		return null;
 	}
-	@Test
-	public void SystemTest_teacher() {
-		MockHttpSession session = new MockHttpSession();
-		session.setAttribute("type", "teacher");
-		when(request.getSession()).thenReturn(session);
-		User user = userController.tryLogin(request, "admin","password");
-		assertNotNull(user);
-		assertEquals(4, user.getId());
-		Question question = new Question(); // Create your question object
-		question.setId(6L);
-		question.setExamId(3L);
-		question.setNumber(1L);
-		question.setMaxScore(10L);
-		question.setIsChoice(true);
-		question.setDesc("test");
-		question.setStdAnswer("test");
-		String reqJsonStr = question.toString();
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<String> entity = new HttpEntity<String>(reqJsonStr,headers);
-		String url = "http://localhost:"+port+"/api/question/add";
-		//ResponseEntity<String> exchange = template.exchange(url, HttpMethod.PUT, entity, String.class);
 
-//		HttpEntity<String> questionHttpEntity = new HttpEntity<>((String) question);
-//		ResponseEntity<String> response = questionController.addQuestion(request, question);
-//		String url = "http://localhost:" + port + "/api/question/add";
-//		String response = httpRequest(url, HttpMethod.POST, questionHttpEntity);
-//		assertEquals(HttpStatus.OK, response.getStatusCode());
-//		assertEquals("success", response.getBody());
-
-	}
 @Test
 	void testAddQuestion_teacher() {
 	MockHttpSession session = new MockHttpSession();

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/take_exam")
@@ -32,5 +33,17 @@ public class TakeExamController {
         boolean b = takeExamService.submit(answerList, true);
         String str=b ? "success" : "failure";
         return new ResponseEntity<>(str, HttpStatus.OK);
+    }
+    /*
+     * @Description: 获取所有学生的大题答案
+     * <大题号，学生id，学生答案，题目描述，最大分数>
+     */
+    @GetMapping("/big_question")
+    public ResponseEntity<List<Map<String,String>>> getBigQuestionInfo(HttpServletRequest req,
+                                       @RequestParam("eid") Long examId) {
+        if (!req.getSession().getAttribute("type").equals( "teacher")) {
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+        return new ResponseEntity<>(takeExamService.getBigQuestionInfo(examId), HttpStatus.OK);
     }
 }

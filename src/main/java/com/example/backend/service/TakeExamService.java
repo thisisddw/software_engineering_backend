@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TakeExamService {
@@ -33,5 +34,9 @@ public class TakeExamService {
             answerDao.setAnswer(ans);
         }
         return true;
+    }
+
+    public List<Map<String,String>> getBigQuestionInfo(Long examId) {
+        return answerDao.getBigQuestionInfo(examId);
     }
 }
