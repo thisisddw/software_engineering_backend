@@ -17,7 +17,7 @@ public class GradeController {
 
     @PutMapping
     public  ResponseEntity<String> setScore(HttpServletRequest req, @RequestBody Map<String, Long> params) {
-        if (req.getSession().getAttribute("type") != "teacher") {
+        if (!req.getSession().getAttribute("type") .equals( "teacher")) {
             return new ResponseEntity<String>("failure", HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<String>(gradeService.setScore(params.get("userId"), params.get("questionId"), params.get("score")), HttpStatus.OK);
@@ -32,7 +32,7 @@ public class GradeController {
     @GetMapping
     public ResponseEntity<Object[]>  getScore(HttpServletRequest req, @RequestParam("uid") Long userId,
                              @RequestParam("eid") Long examId) {
-        if (req.getSession().getAttribute("id") != userId) {
+        if (!req.getSession().getAttribute("id").equals(  userId)) {
             return new ResponseEntity<>(null,HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity<>(gradeService.getGrade(userId, examId), HttpStatus.OK);

@@ -14,10 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.mock.web.MockHttpSession;
 
@@ -68,8 +65,15 @@ class BackendApplicationTests {
 		question.setIsChoice(true);
 		question.setDesc("test");
 		question.setStdAnswer("test");
-		//HttpEntity<String> questionHttpEntity = new HttpEntity<>((String) question);
-	//	ResponseEntity<String> response = questionController.addQuestion(request, question);
+		String reqJsonStr = question.toString();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		HttpEntity<String> entity = new HttpEntity<String>(reqJsonStr,headers);
+		String url = "http://localhost:"+port+"/api/question/add";
+		//ResponseEntity<String> exchange = template.exchange(url, HttpMethod.PUT, entity, String.class);
+
+//		HttpEntity<String> questionHttpEntity = new HttpEntity<>((String) question);
+//		ResponseEntity<String> response = questionController.addQuestion(request, question);
 //		String url = "http://localhost:" + port + "/api/question/add";
 //		String response = httpRequest(url, HttpMethod.POST, questionHttpEntity);
 //		assertEquals(HttpStatus.OK, response.getStatusCode());

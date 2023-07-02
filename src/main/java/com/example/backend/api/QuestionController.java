@@ -15,8 +15,8 @@ public class QuestionController {
     private QuestionDao questionDao;
 
     @PutMapping("/add")
-    public ResponseEntity<String> addQuestion(HttpServletRequest req, @RequestParam Question question) {
-        if (req.getSession().getAttribute("type") != "teacher") {
+    public ResponseEntity<String> addQuestion(HttpServletRequest req, @RequestBody Question question) {
+        if (!req.getSession().getAttribute("type") .equals( "teacher")) {
             return new ResponseEntity<String>("failure", HttpStatus.FORBIDDEN);
         }
         if (questionDao.addQuestion(question) == 1) return new ResponseEntity<String>("success", HttpStatus.OK);
